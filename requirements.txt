@@ -1,0 +1,8 @@
+numpy
+pandas
+plotly
+dash==1.18.1
+gunicorn==20.0.4
+Flask==1.1.2
+requests
+jsonify
