@@ -30,11 +30,13 @@ app.layout = html.Div(
 
             ], style={
 
-                'width': '25%',
+                'width': '100%',
 
                 'border': '1px solid #eee',
 
-                'padding': '30px 30px 30px 120px',
+                'text-align': 'center',
+
+                'padding': '30px 30px 30px',
 
                 'box-shadow': ' 0 2px 2px #ccc',
 
@@ -170,21 +172,15 @@ def update_output(n_clicks, structure, size, number, lesion_margin,
         'Microvascular architecture of the tumor': microvascular_architecture
     }
 
-    stade = requests.post(
-        url='http://localhost:5000/predict_stade',
-        headers = {'Content-Type': 'application/json'},
-        params = body
-    )
-    # stade = json.loads(stade.decode('utf-8'))
-
-    grade = requests.post(
-        url='http://localhost:5000/predict_grade',
+    response = requests.post(
+        url='http://localhost:5000/predict_grade_n_stade',
         headers={'Content-Type': 'application/json'},
-        data=body
+        params=body
     )
+
     # grade = json.loads(grade.decode('utf-8'))
     return 'The tumor you just gave a diagnostic for seems to be a {}_{} tumor'.format(
-        stade.json()["prediction"], grade.json()["prediction"]
+        response.json()["stade"], response.json()["grade"]
         )
 # stade.json()['prediction'],
 #         grade.json()['prediction']
