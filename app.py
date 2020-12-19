@@ -173,7 +173,7 @@ def update_output(n_clicks, structure, size, number, lesion_margin,
         'Microvascular architecture of the tumor': microvascular_architecture
     }
 
-    response = requests.post(
+    response = requests.get(
         url='http://0.0.0.0/predict_grade_n_stade',
         headers={'Content-Type': 'application/json'},
         params=body
