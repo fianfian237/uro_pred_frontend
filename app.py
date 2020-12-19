@@ -174,7 +174,7 @@ def update_output(n_clicks, structure, size, number, lesion_margin,
     }
 
     response = requests.get(
-        url='http://0.0.0.0/predict_grade_n_stade',
+        url='http://uro_pred_backend:4000/predict_grade_n_stade',
         headers={'Content-Type': 'application/json'},
         params=body
     )
