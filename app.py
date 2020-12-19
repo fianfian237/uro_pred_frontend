@@ -9,17 +9,17 @@ import dash_table
 import pandas as pd
 import numpy as np
 import requests
+from flask import Flask
 
 
 
 
 
 
-
+server = Flask(__name__)
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
-app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
-server = app.server
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets, server=server)
 
 app.layout = html.Div(
      children = [
