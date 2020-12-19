@@ -173,7 +173,7 @@ def update_output(n_clicks, structure, size, number, lesion_margin,
     }
 
     response = requests.post(
-        url='http://nginx:80/predict_grade_n_stade',
+        url='http://uro_pred_backend:80/predict_grade_n_stade',
         headers={'Content-Type': 'application/json'},
         params=body
     )
@@ -184,5 +184,5 @@ def update_output(n_clicks, structure, size, number, lesion_margin,
         )
 # stade.json()['prediction'],
 #         grade.json()['prediction']
-# if __name__ == '__main__':
-#     app.run_server(debug=True, port=8050)
+if __name__ == '__main__':
+    app.run_server(debug=True, port=8050)
