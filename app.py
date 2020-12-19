@@ -19,6 +19,7 @@ import requests
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+server = app.server
 
 app.layout = html.Div(
      children = [
@@ -185,4 +186,4 @@ def update_output(n_clicks, structure, size, number, lesion_margin,
 # stade.json()['prediction'],
 #         grade.json()['prediction']
 if __name__ == '__main__':
-    app.run_server(debug=True, port=8050)
+    app.run_server(debug=True, host='0.0.0.0', port=8050)
