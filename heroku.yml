@@ -3,7 +3,7 @@
 #   - plan: heroku-postgresql
 build:
  docker:
-   uro_pred_frontend: Dockerfile
+   web: Dockerfile
 # config:
 #   REQUIREMENTS_FILENAME: heroku.yml
 #release:
@@ -11,4 +11,4 @@ build:
 # command:
 #   - ./release.sh
 run:
- uro_pred_frontend: gunicorn -w 1 -b 0.0.0.0:8050 app:server
+ web: gunicorn -w 1 -b 0.0.0.0:8050 app:server
