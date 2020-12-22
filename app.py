@@ -9,16 +9,17 @@ import dash_table
 import pandas as pd
 import numpy as np
 import requests
+from flask import Flask
 
 
 
 
 
 
-
+server = Flask(__name__)
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
-app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets, server=server)
 
 app.layout = html.Div(
      children = [
@@ -172,8 +173,8 @@ def update_output(n_clicks, structure, size, number, lesion_margin,
         'Microvascular architecture of the tumor': microvascular_architecture
     }
 
-    response = requests.post(
-        url='http://localhost:5000/predict_grade_n_stade',
+    response = requests.get(
+        url='http://uro_pred_backend:4000/predict_grade_n_stade',
         headers={'Content-Type': 'application/json'},
         params=body
     )
@@ -185,4 +186,4 @@ def update_output(n_clicks, structure, size, number, lesion_margin,
 # stade.json()['prediction'],
 #         grade.json()['prediction']
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=True, host='0.0.0.0', port=8050)

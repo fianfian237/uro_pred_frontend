@@ -14,4 +14,4 @@ RUN python -m pip install -r /tmp/requirements.txt
 COPY . .
 
 #EXPOSE 4001
-CMD [ "python", "app.py" ]
+#CMD [ "python", "app.py" ]
