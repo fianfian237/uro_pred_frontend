@@ -188,7 +188,7 @@ def update_output(n_clicks, structure, size, number, lesion_margin,
 
 
 if __name__ == '__main__':
-    port = os.getenv("port")
+    port = os.getenv("PORT")
     if port is None:
         port = 8050
     app.run_server(debug=True, host='0.0.0.0', port=int(port))
