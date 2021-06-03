@@ -1,3 +1,4 @@
+import os
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
@@ -10,9 +11,6 @@ import pandas as pd
 import numpy as np
 import requests
 from flask import Flask
-
-
-
 
 
 
@@ -173,8 +171,12 @@ def update_output(n_clicks, structure, size, number, lesion_margin,
         'Microvascular architecture of the tumor': microvascular_architecture
     }
 
+    url = os.getenv('preduro_backend_url')
+    if url is None:
+        url = "http://localhost:4000"
+
     response = requests.get(
-        url='http://uro_pred_backend:4000/predict_grade_n_stade',
+        url=url + '/predict_grade_n_stade',
         headers={'Content-Type': 'application/json'},
         params=body
     )
@@ -183,7 +185,13 @@ def update_output(n_clicks, structure, size, number, lesion_margin,
     return 'The tumor you just gave a diagnostic for seems to be a {}_{} tumor'.format(
         response.json()["stade"], response.json()["grade"]
         )
-# stade.json()['prediction'],
-#         grade.json()['prediction']
+
+
 if __name__ == '__main__':
-    app.run_server(debug=True, host='0.0.0.0', port=8050)
+    host = os.getenv("preduro_front_host")
+    port = os.getenv("port")
+    if host is None:
+        host = '0.0.0.0'
+    if port is None:
+        port = 8050
+    app.run_server(debug=True, host=host, port=int(port))
