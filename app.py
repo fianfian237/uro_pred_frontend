@@ -188,10 +188,7 @@ def update_output(n_clicks, structure, size, number, lesion_margin,
 
 
 if __name__ == '__main__':
-    host = os.getenv("preduro_front_host")
     port = os.getenv("port")
-    if host is None:
-        host = '0.0.0.0'
     if port is None:
         port = 8050
-    app.run_server(debug=True, host=host, port=int(port))
+    app.run_server(debug=True, host='0.0.0.0', port=int(port))
