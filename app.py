@@ -181,8 +181,7 @@ def update_output(n_clicks, structure, size, number, lesion_margin,
         headers={'Content-Type': 'application/json'},
         params=body
     )
-
-    # grade = json.loads(grade.decode('utf-8'))
+    app.logger.info(response.json())
     return 'The tumor you just gave a diagnostic for seems to be a {}_{} tumor'.format(
         response.json()["stade"], response.json()["grade"]
         )
