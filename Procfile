@@ -1,0 +1,1 @@
+gunicorn -w 2 -b $PORT app:server
