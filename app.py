@@ -175,6 +175,7 @@ def update_output(n_clicks, structure, size, number, lesion_margin,
     if url is None:
         url = "http://localhost:4000"
 
+    test = None
     response = requests.get(
         url=url + '/predict_grade_n_stade',
         headers={'Content-Type': 'application/json'},
